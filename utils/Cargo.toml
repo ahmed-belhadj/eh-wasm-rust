@@ -5,6 +5,7 @@ authors = ["Ahmed Belhadj <mr.ahmedbelhadj@gmail.com>"]
 edition = "2018"
 
 [dependencies]
+wasm-bindgen = "0.2"
 
 [lib]
 crate-type = ["cdylib"]
