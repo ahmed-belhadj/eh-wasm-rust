@@ -3,11 +3,30 @@
 
 <head>
     <script>
-        WebAssembly.instantiateStreaming(fetch("utils.gc.wasm"))
+        // Load a WebAssembly Function Written in Rust and Invoke it from JavaScript
+        /* WebAssembly.instantiateStreaming(fetch("utils.gc.wasm"))
             .then(wasmModule => {
                 const result = wasmModule.instance.exports.add_one(3);
                 const text = document.createTextNode(result);
                 document.body.appendChild(text);
+            }); */
+
+        // Pass a JavaScript Function to WebAssembly and Invoke it from Rust
+        const appendNumberToBody = (number) => {
+            const text = document.createTextNode(number);
+            document.body.appendChild(text);
+        }
+
+        const importObject = {
+            env: {
+                appendNumberToBody: appendNumberToBody,
+                alert: alert,
+            }
+        };
+
+        WebAssembly.instantiateStreaming(fetch("utils.gc.wasm"), importObject)
+            .then(wasmModule => {
+                wasmModule.instance.exports.run();
             });
     </script>
 
