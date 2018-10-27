@@ -1,0 +1,15 @@
+{
+  "name": "ahmedbelhadj-wasm-lib",
+  "collaborators": [
+    "Ahmed Belhadj <mr.ahmedbelhadj@gmail.com>"
+  ],
+  "version": "0.1.0",
+  "files": [
+    "my_wasm_lib_bg.wasm",
+    "my_wasm_lib.js",
+    "my_wasm_lib.d.ts"
+  ],
+  "module": "my_wasm_lib.js",
+  "types": "my_wasm_lib.d.ts",
+  "sideEffects": "false"
+}

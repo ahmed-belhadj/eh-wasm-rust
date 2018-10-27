@@ -6,3 +6,7 @@ import("../crate/pkg").then(module => {
 import("./app").then(() => {
   console.log("loaded...");
 });
+
+import("ahmedbelhadj-wasm-lib").then(module => {
+  module.greet("World");
+});
