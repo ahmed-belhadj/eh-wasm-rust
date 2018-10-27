@@ -4,6 +4,8 @@
 extern crate cfg_if;
 
 extern crate wasm_bindgen;
+extern crate js_sys;
+
 use wasm_bindgen::prelude::*;
 
 cfg_if! {
@@ -60,9 +62,15 @@ macro_rules! log {
 // Called by our JS entry point to run the example
 #[wasm_bindgen]
 pub fn run() {
+    let now = js_sys::Date::now();
+    let now_date = js_sys::Date::new(&JsValue::from_f64(now));
     let val = document.createElement("p");
     log!("The {} is {}", "meaning of life", 42);
-    val.set_inner_html("Hello World!");
+    val.set_inner_html(&format!(
+        "Hello from Rust, it's {}:{}",
+        now_date.get_hours(),
+        now_date.get_minutes()
+    ));    
     document.body().append_child(val);
 }
 
